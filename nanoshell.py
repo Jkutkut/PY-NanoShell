@@ -6,7 +6,7 @@
 #    By: jre-gonz <jre-gonz@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/24 07:53:46 by jre-gonz          #+#    #+#              #
-#    Updated: 2022/09/06 22:57:03 by jre-gonz         ###   ########.fr        #
+#    Updated: 2022/09/06 23:07:57 by jre-gonz         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -88,13 +88,13 @@ class NanoShell:
         '''
         Prints the current history of commands
         '''
-        result = f"{YELLOW}History:{NC}"
+        result = f"{YELLOW}\nHistory:{NC}\n"
         i = 0
         digits = int(math.log10(len(self.history)))+1
         for c in self.history:
             result = f"{result}\n{i}  {c}"
             i = i + 1
-        self.print(result)
+        self.print(result, end="\n\n")
 
     def _history_clear(self, cmd: list) -> None:
         '''
@@ -103,7 +103,7 @@ class NanoShell:
         self.history = []
         self.hist_idx = 0
         os.remove(self.LOG_FILE)
-        self.print("History cleared.")
+        self.print("\nHistory cleared.\n")
 
     def _help(self, cmd: list) -> None:
         '''
@@ -330,6 +330,6 @@ class NanoShell:
         return ""
 
 if __name__=='__main__':
-    m = NanoShell(debug=True)
+    m = NanoShell(debug=False)
     m.run()
 
