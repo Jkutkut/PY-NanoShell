@@ -6,7 +6,7 @@
 #    By: jre-gonz <jre-gonz@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/24 07:53:46 by jre-gonz          #+#    #+#              #
-#    Updated: 2022/09/05 23:18:48 by jre-gonz         ###   ########.fr        #
+#    Updated: 2022/09/06 22:57:03 by jre-gonz         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -73,8 +73,7 @@ class NanoShell:
     TAB = "\x09"
 
     # ******* CONSTRUCTOR *******
-    def __init__(self, title: str = "", debug: bool = False):
-        self.__title = title
+    def __init__(self, debug: bool = False):
         self.__debug = debug
 
         self.__inkey = _Getch()
@@ -267,7 +266,7 @@ class NanoShell:
         Handles the input of the user.
         '''
         os.system("clear")
-        self.print(self.__title, end="")
+        self.print(self._title(), end="")
         while self.running:
             self._update()
             k = self._get_input()
@@ -323,6 +322,12 @@ class NanoShell:
                 if self.__debug:
                     self.print(f"\n{self._hexify(k)}") # TODO debug
         self.print(self.END_MSG)
+
+    def _title(self) -> str:
+        '''
+        Returns the title of the shell.
+        '''
+        return ""
 
 if __name__=='__main__':
     m = NanoShell(debug=True)
