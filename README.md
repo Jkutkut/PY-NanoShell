@@ -12,3 +12,12 @@ Basic logic to implement a command shell using python3. This way, you can create
 	- In order to keep the logic organized, you can call an auxiliar method for each command. This way, the validation and logic can be done there to keep the code clean.
 8. Customize the title of the shell by modifying the ```_title()``` method.
 9. **Enjoy your new shell!**
+
+## Features:
+- [x] Command aliases.
+- [x] Autocompletion with the tab key.
+- [x] Exit with Ctrl+D, Ctrl+C or the exit command.
+- [x] You can use the arrow keys to navigate through the command, being able to edit it at any point.
+- [x] History system to navigate through the commands you have used. Use the arrow keys to navigate through the history or use the command to list the history.
+- [x] Log system storing the content of the shell in a file.
+- [x] Modular design to allow the implementation of new commands.
