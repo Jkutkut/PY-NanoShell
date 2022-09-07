@@ -6,7 +6,7 @@
 #    By: jre-gonz <jre-gonz@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/24 07:53:46 by jre-gonz          #+#    #+#              #
-#    Updated: 2022/09/06 23:09:46 by jre-gonz         ###   ########.fr        #
+#    Updated: 2022/09/07 22:54:02 by jre-gonz         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -255,7 +255,7 @@ class NanoShell:
             print(f"\n{' '.join(available)}")
             # Note: all available elements are longer than cmd[cmd_index]
             i = len(cmd[cmd_index])
-            while all([i < len(e) and i < len(available[0][i]) and available[0][i] == e[i] for e in available]):
+            while all([i < len(e) and i < len(available[0]) and available[0][i] == e[i] for e in available]):
                 i = i + 1
             cmd[cmd_index] = available[0][:i]
             self.text = " ".join(cmd)
