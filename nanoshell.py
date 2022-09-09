@@ -6,7 +6,7 @@
 #    By: jre-gonz <jre-gonz@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/24 07:53:46 by jre-gonz          #+#    #+#              #
-#    Updated: 2022/09/07 22:54:02 by jre-gonz         ###   ########.fr        #
+#    Updated: 2022/09/09 10:37:40 by jre-gonz         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -192,7 +192,7 @@ class NanoShell:
             "".join(['\033[D' for _ in range(self.koffset)]),\
             end="")
 
-    def print(self, content: str | list = "", end="\n") -> None:
+    def print(self, content = "", end="\n") -> None:
         '''
         Prints the given content to the screen.
         Also adds the content to the log file.
