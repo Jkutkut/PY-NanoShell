@@ -6,7 +6,7 @@
 #    By: jre-gonz <jre-gonz@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/24 07:53:46 by jre-gonz          #+#    #+#              #
-#    Updated: 2022/09/09 10:37:40 by jre-gonz         ###   ########.fr        #
+#    Updated: 2022/09/09 18:45:13 by jre-gonz         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -138,7 +138,7 @@ class NanoShell:
         self.print()
         if self.__debug:
             self.print(f"-->'{self.text}'")
-        c = self.text.split(" ")
+        c = self.text.strip().split(" ")
         try:
             if not self._handle_cmd(c):
                 self.print(self.CNF)
