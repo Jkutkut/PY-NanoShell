@@ -6,7 +6,7 @@
 #    By: jre-gonz <jre-gonz@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/24 07:53:46 by jre-gonz          #+#    #+#              #
-#    Updated: 2022/09/09 18:45:13 by jre-gonz         ###   ########.fr        #
+#    Updated: 2022/09/11 14:11:12 by jre-gonz         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -144,6 +144,8 @@ class NanoShell:
                 self.print(self.CNF)
         except Exception as e:
             self.print("\n" + str(e))
+            if self.__debug:
+                raise e
 
     def _handle_cmd(self, cmd: list) -> bool:
         '''
