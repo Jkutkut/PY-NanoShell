@@ -6,13 +6,17 @@
 #    By: jre-gonz <jre-gonz@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/24 07:53:46 by jre-gonz          #+#    #+#              #
-#    Updated: 2022/09/09 18:45:13 by jre-gonz         ###   ########.fr        #
+#    Updated: 2022/09/12 17:47:13 by jre-gonz         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 import os,sys,tty,termios
 import math
 import json
+
+from os.path import expanduser
+from pathlib import Path
+home = expanduser("~") # To store the log file
 
 class _Getch:
     def __call__(self):
@@ -62,7 +66,7 @@ class NanoShell:
     SHELL_PROMPT = f"{BLUE}$> {NC}"
     CNF = f"{RED}Command not found{NC}. Maybe with the {YELLOW}{CMDS['HELP'][0]}{NC} command..."
     END_MSG = "Exiting shell"
-    LOG_FILE = ".log.log"
+    LOG_FILE = f"{Path.home()}/.nanoshell.log"
 
     # ******* KEYS AND COMBINATIONS *******
     # ctrl-c and ctrl-d
@@ -82,6 +86,7 @@ class NanoShell:
         self.running = True
         self.hist_idx = 0
         self.history = []
+        self.log = True
 
     # ******* COMMANDS LOGIC *******
     def _history(self, cmd: list) -> None:
@@ -102,7 +107,8 @@ class NanoShell:
         '''
         self.history = []
         self.hist_idx = 0
-        os.remove(self.LOG_FILE)
+        if self.log:
+            os.remove(self.LOG_FILE)
         self.print("\nHistory cleared.\n")
 
     def _help(self, cmd: list) -> None:
@@ -204,6 +210,8 @@ class NanoShell:
         '''
         Logs the given text to the log file.
         '''
+        if not self.log:
+            return
         f = open(self.LOG_FILE, "a")
         f.write(content if type(content) is str else json.dumps(content))
         f.write(end)
