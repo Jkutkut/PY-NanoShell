@@ -6,7 +6,7 @@
 #    By: jre-gonz <jre-gonz@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/11 22:51:00 by jre-gonz          #+#    #+#              #
-#    Updated: 2022/09/13 11:25:42 by jre-gonz         ###   ########.fr        #
+#    Updated: 2022/09/13 11:56:03 by jre-gonz         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -86,7 +86,11 @@ class SelectionMenu():
         print(text, end=end)
 
     def _selected_input(self) -> str:
-        pass
+        return self.options[self.index]
+    
+    def return_selection(self):
+        self._show_cursor()
+        return self._selected_input()
 
     def _hexify(self, s): # TODO DEBUG
         return [hex(ord(i)) for i in list(str(s))]
@@ -95,12 +99,18 @@ class SelectionMenu():
         '''
         Updates the screen.
         '''
-        if first_time:
-            print("\r")
+        if not first_time:
             for _ in range(self.noptions):
                 print(f"\033[A", end="")
+        else:
+            print("Select an option:")
+
+        SELECTION = "   #"
+        not_SELECTION = "    " # TODO refactor
         for o in options:
-            print(f" - {o}")
+            print(f"\r - {o}", end="")
+            print(SELECTION if o == self._selected_input() else not_SELECTION)
+
 
     def run(self) -> None:
         '''
@@ -116,10 +126,7 @@ class SelectionMenu():
             if k in self.EXIT_COMBINATIONS:
                 self.running = False
             elif k == self.ENTER:
-                pass
-            elif k == self.ENTER:
-                return self._selected_input()
-                # self.running = False
+                return self.return_selection()
             # ******* ARROW KEYS *******
             elif k == '\x1b[A': # up
                 self.index = (self.index - 1)
@@ -128,13 +135,11 @@ class SelectionMenu():
             elif k == '\x1b[B': # down (History system)
                 self.index = (self.index + 1) % self.noptions
             elif k == '\x1b[D': # Left key
-                return self._selected_input()
-            elif k == '\x1b[C': # Right key
                 pass
-
+            elif k == '\x1b[C': # Right key
+                return self.return_selection()
             else:
-                if self.__debug:
-                    self.print(f"\n{self._hexify(k)}") # TODO debug
+                self.print(f"\n{self._hexify(k)}") # TODO debug
         self._show_cursor()
 
 if __name__ == "__main__":
@@ -147,4 +152,6 @@ if __name__ == "__main__":
         "Option 6",
     ]
     sm = SelectionMenu(options)
-    sm.run()
+    response = sm.run()
+
+    print(f"Selected option: {response}")
