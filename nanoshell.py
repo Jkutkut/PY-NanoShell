@@ -6,7 +6,7 @@
 #    By: jre-gonz <jre-gonz@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/24 07:53:46 by jre-gonz          #+#    #+#              #
-#    Updated: 2022/09/12 17:48:26 by jre-gonz         ###   ########.fr        #
+#    Updated: 2022/09/13 09:37:39 by jre-gonz         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -158,7 +158,7 @@ class NanoShell:
         Takes the command inputed and attempts to execute it.
         Returns True if command found. Else, False.
         '''
-        self._log(f"{self.SHELL_PROMPT}{' '.join(cmd)}")
+        self._log(f"{self.SHELL_PROMPT}{' '.join(cmd)}", "\n")
 
         if cmd[0] in self.CMDS['EXIT']:
             self.running = False
